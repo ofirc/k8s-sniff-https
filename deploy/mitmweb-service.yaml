@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mitmweb
+spec:
+  selector:
+    app: mitmweb
+  ports:
+  - name: proxy
+    protocol: TCP
+    port: 8080  # Expose proxy port
+    targetPort: 8080
+  - name: web
+    protocol: TCP
+    port: 8081  # Expose web interface port
+    targetPort: 8081

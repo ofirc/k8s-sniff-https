@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mitmweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mitmweb
+  template:
+    metadata:
+      labels:
+        app: mitmweb
+    spec:
+      containers:
+      - name: mitmweb
+        image: mitmproxy/mitmproxy:latest
+        ports:
+        - containerPort: 8080  # Proxy port
+        - containerPort: 8081  # Web interface port
+        command: ["mitmweb"]
+        args: ["--web-host", "0.0.0.0"]
