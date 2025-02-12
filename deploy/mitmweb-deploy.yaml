@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mitmweb
-        image: mitmproxy/mitmproxy:latest
+        image: mitmproxy/mitmproxy:11.1.0
         ports:
         - containerPort: 8080  # Proxy port
         - containerPort: 8081  # Web interface port
