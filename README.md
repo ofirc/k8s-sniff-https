@@ -9,6 +9,11 @@ If you are curious like myself and you want to reverse engineer the API calls un
 That is absolutely correct. So while there are other tools that intercept traffic originating from the Kubernetes cluster like [Kubeshark](https://www.kubeshark.co/), [tshark](https://www.wireshark.org/docs/man-pages/tshark.html) and even good-ol' [tcpdump](https://www.tcpdump.org/), when TLS traffic is involved you need a [Man-In-The-Middle](https://docs.mitmproxy.org/stable/concepts-howmitmproxyworks/#the-mitm-in-mitmproxy) proxy and you need to distribute the CA bundle to the workloads (Pods running in your cluster).
 I found the mitmproxy the most accessible and easy-to-setup-tool out there.
 
+# Related projects
+* [HTTP CONNECT forward proxy]([https://github.com/ofirc/k8s-sniff-https](https://github.com/ofirc/k8s-http-proxy)) - useful for a simple HTTP(s) proxy that does not apply deep packet inspection
+
+* [mTLS Proxy with client credentials](https://github.com/ofirc/go-mtls-proxy) - useful in zero-trust settings
+
 # Overview
 ## Prerequisites
 **Step 0: clone this repository**
