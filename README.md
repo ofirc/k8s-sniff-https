@@ -32,6 +32,7 @@ kubectl apply -f deploy/mitmweb-service.yaml
 
 **Step 2: pull the CA bundle from the mitmweb Pod**
 ```sh
+kubectl wait --for=condition=Available deployment/mitmweb --timeout=150s
 POD_NAME=$(kubectl get pod -l app=mitmweb -o=name | cut -d'/' -f2)
 CA_BUNDLE=/root/.mitmproxy/mitmproxy-ca-cert.pem
 kubectl cp $POD_NAME:$CA_BUNDLE mitmproxy-ca-cert.pem
