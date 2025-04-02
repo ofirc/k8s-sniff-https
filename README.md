@@ -41,6 +41,7 @@ kubectl cp $POD_NAME:$CA_BUNDLE mitmproxy-ca-cert.pem
 **Step 3: spin up an ephemeral Pod for experimenting**
 ```sh
 kubectl run curl --image=curlimages/curl -- sleep infinity
+kubectl wait --for=condition=Ready pod/curl --timeout=150s
 ```
 
 **Step 4: verify the running Pods**
