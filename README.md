@@ -34,8 +34,13 @@ kubectl apply -f deploy/mitmweb-service.yaml
 ```sh
 kubectl wait --for=condition=Available deployment/mitmweb --timeout=150s
 kubectl wait --for=condition=Ready pod -l app=mitmweb --timeout=150s
+# Wait until the file is present inside the selected Pod
 POD_NAME=$(kubectl get pod -l app=mitmweb -o=name | cut -d'/' -f2)
 CA_BUNDLE=/root/.mitmproxy/mitmproxy-ca-cert.pem
+until kubectl exec "$POD_NAME" -- test -f "$CA_BUNDLE"; do
+  echo "Waiting for $CA_BUNDLE to appear in $POD_NAME..."
+  sleep 2
+done
 kubectl cp $POD_NAME:$CA_BUNDLE mitmproxy-ca-cert.pem
 ```
 
