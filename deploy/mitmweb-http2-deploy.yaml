@@ -19,11 +19,11 @@ spec:
         - containerPort: 8080  # Proxy port
         - containerPort: 8081  # Web interface port
         command: ["mitmweb"]
-        args: ["--web-host", "0.0.0.0", "-s", "/scripts/script.py"]
+        args: ["--web-host", "0.0.0.0", "-s", "/scripts/endpoints.py"]
         volumeMounts:
         - name: script-volume
-          mountPath: /scripts/script.py
-          subPath: script.py  # Ensure it's mounted as a file
+          mountPath: /scripts/endpoints.py
+          subPath: endpoints.py  # Ensure it's mounted as a file
       volumes:
       - name: script-volume
         configMap:
